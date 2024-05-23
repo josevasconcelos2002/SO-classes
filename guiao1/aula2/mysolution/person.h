@@ -1,13 +1,15 @@
 #ifndef PERSON_H
 #define PERSON_H
 
+#define file "file_pessoas"
+
 typedef struct person
 {
     char *name;
     int age;
 } Person;
 
-void insertPerson(char *nome, int idade, char *file);
-void listPersons(int n, char *file);
+int new_person(char *nome, int idade);
+int list_persons(int n);
 
 #endif

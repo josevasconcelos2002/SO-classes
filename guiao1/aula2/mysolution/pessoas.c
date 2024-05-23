@@ -18,16 +18,16 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    int fd = open("./file_pessoas", O_TRUNC | O_CREAT | O_WRONLY, 0666);
+    int fd = open(file, O_CREAT, 0666);
 
     if (strcmp(argv[1], "-i") == 0)
     {
-        insertPerson(argv[2], atoi(argv[3]), "./file_pessoas");
+        new_person(argv[2], atoi(argv[3]));
     }
 
     if (strcmp(argv[1], "-l") == 0)
     {
-        listPersons(atoi(argv[2]), "./file_pessoas");
+        list_persons(atoi(argv[2]));
     }
 
     if (strcmp(argv[1], "-u") == 0)
