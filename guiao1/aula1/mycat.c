@@ -3,11 +3,26 @@
 #include <unistd.h>
 #include <stdio.h>
 
-int main()
+int main(int argc, char* argv[])
 {
-    char buffer[4096] = {0};
-    while (read(STDIN_FILENO, buffer, sizeof(buffer)) > 0)
+    if(argc == 2)
     {
-        write(STDOUT_FILENO, buffer, sizeof(buffer));
+        int fd = open(argv[1], O_RDONLY);
+        if(fd)
+        {
+            char buffer[1024] = {0};
+            int bytesRead = 0;
+            while((bytesRead = read(fd, buffer, 1024)) > 0)
+            {
+                write(STDOUT_FILENO, buffer, bytesRead);
+            }
+        }
+        close(fd);
+        return 0;
+    }
+    else
+    {
+        printf("Introduza 2 argumentos\n");
+        return -1;
     }
 }
